@@ -54,6 +54,17 @@
 	.management-row { min-width: 620px; }
 	.management-list { overflow-x: auto; padding-bottom: 8px; }
 	.profile-details-modal { padding: 24px 20px; }
+	.public-profile-carousel { width: 100%; margin-right: 0; margin-left: 0; overflow: hidden; padding: 8px 0 18px; }
+	.public-profile-card { width: 100%; min-width: 100%; min-height: 245px; padding: 22px; align-items: end; }
+	.public-profile-card:not(.is-active) { display: none; }
+	.public-profile-card::after { width: 125px; height: 125px; top: -38px; right: -30px; }
+	.public-profile-avatar { width: 58px; height: 58px; top: 22px; left: 22px; font-size: 17px; }
+	.public-profile-info { width: 100%; padding-top: 66px; padding-right: 24px; overflow-wrap: anywhere; }
+	.public-profile-slug { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.public-profile-info h3 { font-size: 22px; line-height: 1.05; }
+	.public-profile-career { margin-bottom: 10px; line-height: 1.25; }
+	.public-profile-bio { max-width: 100%; font-size: 11px; line-height: 1.4; }
+	.public-profile-arrow { right: 17px; bottom: 16px; }
 }
 :root { --ink: #1d2523; --muted: #707875; --line: #dcded6; --cream: #f6f4ee; --paper: #fffefa; --coral: #f48767; --yellow: #f5d66b; --mint: #b8dfcf; --blue: #aecce8; }
 .app-shell { min-height: 100vh; overflow: hidden; }
