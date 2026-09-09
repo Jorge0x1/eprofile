@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode, type TouchEvent } from 'react'
 import './App.css'
 import { supabase } from './utils/supabase'
 import { QRCodeSVG } from 'qrcode.react'
@@ -64,6 +64,7 @@ function PublicProfiles() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
+  const touchStartX = useRef<number | null>(null)
 
   useEffect(() => {
     void supabase.from('profiles').select('id, slug, full_name, career, bio, avatar_url').eq('status', 'published').eq('is_active', true).order('updated_at', { ascending: false }).then(({ data, error: queryError }) => {
@@ -77,7 +78,10 @@ function PublicProfiles() {
     setActiveIndex((current) => profiles.length ? (current + direction + profiles.length) % profiles.length : 0)
   }
 
-  return <section className="public-profiles-section" id="perfiles"><div className="section-heading split-heading"><div><p className="eyebrow">La comunidad EProfile</p><h2>Explora perfiles<br /><em>que inspiran.</em></h2></div><div className="carousel-controls"><button className="carousel-button" onClick={() => move(-1)} aria-label="Perfil anterior">←</button><span>{profiles.length ? `${String(activeIndex + 1).padStart(2, '0')} / ${String(profiles.length).padStart(2, '0')}` : '— / —'}</span><button className="carousel-button" onClick={() => move(1)} aria-label="Siguiente perfil">→</button></div></div>{error && <p className="public-profiles-message">No se pudieron cargar los perfiles públicos.</p>}{isLoading ? <p className="public-profiles-message">Cargando perfiles públicos...</p> : profiles.length === 0 ? <div className="public-profiles-empty"><span>✦</span><p>Aún no hay perfiles publicados.</p><small>Cuando un estudiante publique su EProfile, aparecerá aquí.</small></div> : <div className="public-profile-carousel">{profiles.map((profile, index) => <PublicProfileCard key={profile.id} profile={profile} isActive={index === activeIndex} />)}</div>}</section>
+  function handleTouchStart(event: TouchEvent<HTMLDivElement>) { touchStartX.current = event.touches[0]?.clientX ?? null }
+  function handleTouchEnd(event: TouchEvent<HTMLDivElement>) { const start = touchStartX.current; const end = event.changedTouches[0]?.clientX ?? start ?? 0; touchStartX.current = null; if (start !== null && Math.abs(end - start) > 45) move(end < start ? 1 : -1) }
+
+  return <section className="public-profiles-section" id="perfiles"><div className="section-heading split-heading"><div><p className="eyebrow">La comunidad EProfile</p><h2>Explora perfiles<br /><em>que inspiran.</em></h2></div><div className="carousel-controls"><button className="carousel-button" onClick={() => move(-1)} aria-label="Perfil anterior">←</button><span>{profiles.length ? `${String(activeIndex + 1).padStart(2, '0')} / ${String(profiles.length).padStart(2, '0')}` : '— / —'}</span><button className="carousel-button" onClick={() => move(1)} aria-label="Siguiente perfil">→</button></div></div>{error && <p className="public-profiles-message">No se pudieron cargar los perfiles públicos.</p>}{isLoading ? <p className="public-profiles-message">Cargando perfiles públicos...</p> : profiles.length === 0 ? <div className="public-profiles-empty"><span>✦</span><p>Aún no hay perfiles publicados.</p><small>Cuando un estudiante publique su EProfile, aparecerá aquí.</small></div> : <div className="public-profile-carousel" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{profiles.map((profile, index) => <PublicProfileCard key={profile.id} profile={profile} isActive={index === activeIndex} />)}</div>}</section>
 }
 
 function PublicProfileCard({ profile, isActive }: { profile: PublicProfile; isActive: boolean }) {

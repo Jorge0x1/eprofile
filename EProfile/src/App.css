@@ -55,6 +55,9 @@
 	.management-list { overflow-x: auto; padding-bottom: 8px; }
 	.profile-details-modal { padding: 24px 20px; }
 	.public-profile-carousel { width: 100%; margin-right: 0; margin-left: 0; overflow: hidden; padding: 8px 0 18px; }
+	.public-profile-carousel { touch-action: pan-y; }
+	.carousel-controls .carousel-button { display: none; }
+	.carousel-controls span { color: #89948c; }
 	.public-profile-card { width: 100%; min-width: 100%; min-height: 245px; padding: 22px; align-items: end; }
 	.public-profile-card:not(.is-active) { display: none; }
 	.public-profile-card::after { width: 125px; height: 125px; top: -38px; right: -30px; }
