@@ -1,5 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
+@media (max-width: 680px) {
+	.topbar { padding: 16px 18px; }
+	.brand { font-size: 17px; }
+	.brand-mark { width: 28px; height: 28px; font-size: 20px; }
+	.landing-hero { min-height: auto; padding: 48px 18px 60px; gap: 18px; }
+	.hero-copy h1 { font-size: clamp(54px, 16vw, 70px); line-height: .9; letter-spacing: -3px; }
+	.hero-description { margin: 24px auto; font-size: 14px; }
+	.hero-actions { width: 100%; gap: 13px; }
+	.hero-actions .primary-button { width: 100%; }
+	.hero-note { max-width: 270px; margin: 30px auto 0; line-height: 1.45; }
+	.hero-visual { width: calc(100% + 36px); min-height: 375px; margin: 0 -18px; transform: none; }
+	.orbit-one { width: 88vw; height: 245px; }
+	.orbit-two { width: 92vw; height: 350px; }
+	.profile-card { width: min(290px, 78vw); min-height: 365px; padding: 21px 22px 18px; }
+	.portrait-large { width: 66px; height: 66px; margin-top: 34px; }
+	.profile-card h2 { font-size: 42px; }
+	.tag-qr { top: 18px; right: 3%; font-size: 9px; }
+	.tag-projects { right: 1%; bottom: 22px; }
+	.proof-strip { gap: 10px; padding: 14px 0; }
+	.proof-strip span:first-child { max-width: 130px; line-height: 1.3; }
+	.feature-section, .profiles-section { padding: 68px 0; }
+	.feature-grid { gap: 10px; margin-top: 32px; }
+	.feature-card { min-height: 245px; padding: 20px; }
+	.feature-icon { margin: 24px 0 12px; }
+	.public-profiles-section { padding-top: 68px; }
+	.public-profile-card { min-height: 225px; }
+	.site-footer { font-size: 10px; }
+	.site-footer .brand { width: 100%; }
+	.site-footer span:not(.brand):last-child { margin-left: auto; }
+	.public-profile-main { padding-top: 40px; }
+	.public-hero-avatar { width: 88px; height: 88px; margin-bottom: 22px; }
+	.public-identity h1 { font-size: clamp(46px, 15vw, 64px); letter-spacing: -3px; }
+	.public-identity h2 { font-size: 16px; }
+	.public-actions .primary-button { width: 100%; }
+	.public-qr { width: 100%; justify-content: center; }
+	.student-header { padding: 16px 18px; }
+	.student-content { padding: 42px 18px 60px; }
+	.student-welcome h1 { font-size: clamp(48px, 15vw, 62px); letter-spacing: -3px; }
+	.student-editor { width: 100%; }
+	.avatar-editor { gap: 12px; }
+	.admin-content { padding: 22px 14px 45px; }
+	.admin-header { align-items: start; }
+	.admin-header h1 { font-size: 24px; }
+	.admin-profile { display: none; }
+	.dashboard { margin-top: 27px; }
+	.stats-grid { gap: 9px; }
+	.stat-card { min-height: 122px; padding: 15px; }
+	.stat-card strong { font-size: 34px; }
+	.management-view { margin-top: 28px; }
+	.management-toolbar { align-items: start; gap: 12px; }
+	.management-toolbar h2 { font-size: 22px; }
+	.management-row { min-width: 620px; }
+	.management-list { overflow-x: auto; padding-bottom: 8px; }
+	.profile-details-modal { padding: 24px 20px; }
+}
 :root { --ink: #1d2523; --muted: #707875; --line: #dcded6; --cream: #f6f4ee; --paper: #fffefa; --coral: #f48767; --yellow: #f5d66b; --mint: #b8dfcf; --blue: #aecce8; }
 .app-shell { min-height: 100vh; overflow: hidden; }
 .landing-page { background: var(--cream); }
